@@ -9,7 +9,7 @@ import android.provider.CalendarContract.Events;
 import com.facebook.react.bridge.*;
 import static android.app.Activity.RESULT_OK;
 
-
+//TODO get created event id to make this work same way as in ios
 public class AddCalendarEventModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
     private final String ADD_EVENT_MODULE_NAME = "AddCalendarEvent";
