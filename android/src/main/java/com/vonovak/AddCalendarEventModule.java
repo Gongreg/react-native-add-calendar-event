@@ -7,11 +7,6 @@ import android.provider.CalendarContract;
 import android.util.Log;
 import android.provider.CalendarContract.Events;
 import com.facebook.react.bridge.*;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
-
 import static android.app.Activity.RESULT_OK;
 
 
@@ -19,7 +14,6 @@ public class AddCalendarEventModule extends ReactContextBaseJavaModule implement
 
     private final String ADD_EVENT_MODULE_NAME = "AddCalendarEvent";
     private final int ADD_EVENT_REQUEST_CODE = 11;
-    private static final String DATE_PARSING_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
     private Promise promise = null;
 
 
@@ -33,12 +27,6 @@ public class AddCalendarEventModule extends ReactContextBaseJavaModule implement
         return ADD_EVENT_MODULE_NAME;
     }
 
-    private static long getTimestamp(String dateAsString) throws ParseException {
-        SimpleDateFormat datetimeFormatter = new SimpleDateFormat(DATE_PARSING_FORMAT);
-        datetimeFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return datetimeFormatter.parse(dateAsString).getTime();
-    }
-
     @ReactMethod
     public void presentEventDialog(ReadableMap config, Promise eventPromise) {
         promise = eventPromise;
@@ -50,11 +38,11 @@ public class AddCalendarEventModule extends ReactContextBaseJavaModule implement
                     .putExtra(Events.TITLE, config.getString("title"));
 
             if (config.hasKey("startDate")) {
-                calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, getTimestamp(config.getString("startDate")));
+                calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, (long) config.getDouble("startDate"));
             }
 
             if (config.hasKey("endDate")) {
-                calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, getTimestamp(config.getString("endDate")));
+                calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, (long) config.getDouble("endDate"));
             }
 
             if (config.hasKey("location")
