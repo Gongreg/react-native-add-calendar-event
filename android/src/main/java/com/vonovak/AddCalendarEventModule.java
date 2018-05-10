@@ -76,6 +76,7 @@ public class AddCalendarEventModule extends ReactContextBaseJavaModule implement
         } else {
             promise.reject(ADD_EVENT_MODULE_NAME, "cancelled");
         }
+        promise = null;
     }
 
     private void rejectPromise(Exception e) {
@@ -84,6 +85,7 @@ public class AddCalendarEventModule extends ReactContextBaseJavaModule implement
             return;
         }
         promise.reject(ADD_EVENT_MODULE_NAME, e.getMessage());
+        promise = null;
     }
 
 
