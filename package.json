@@ -1,6 +1,6 @@
 {
   "name": "rn-add-calevent",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "creating events in react native using the standard iOS / Android dialogs",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "author": "Vojtech Novak / Gytis Vinclovas",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "^0.41.2"
+    "react-native": "^0.61.4"
   },
   "directories": {
     "example": "example"
